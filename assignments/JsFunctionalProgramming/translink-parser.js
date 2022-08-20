@@ -30,16 +30,28 @@ function main() {
 
     /**
      * This function format the given time to HH:mm
-     * @param {string} time - 
+     * @param {string} time - input time
      * @return {string} time to format HH:mm
      */
     function timeFormat(time) {
-
+        let hour = new String(time.getHours());
+        if (hour.length < 2) {
+            hour = `0${hour}`;
+        }
+        let minute = new String(time.getMinutes());
+        if (minute.length < 2) {
+            minute = `0${minute}`;
+        }
+        return new String(`${hour}:${minute}`);
     }
 
     // Declare date global variable
     const date = new Date();
     const dateValid = dateFormat(date);     // Valid format of date for use
+
+    // Declare time global variable
+    const time = new Date();
+    const timeValid = timeFormat(time);
     
 
     // Declare message global variables
