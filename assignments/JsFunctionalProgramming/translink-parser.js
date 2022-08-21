@@ -53,20 +53,40 @@ function main() {
     }
 
     /**
-     * This function format the given time to HH:mm
-     * @param {string} time - input time
-     * @return {string} time to format HH:mm
+     * This function check if given time is in valid format HH:mm
+     * @param {string} timeString - input time
+     * @returns {boolean} - valid time format or not
      */
-    function timeStringify(time) {
-        let hour = new String(time.getHours());
-        if (hour.length < 2) {
-            hour = `0${hour}`;
+    function isValidTime(timeString) {
+        const regex_time = /^(\d{2})\:(\d{2})$/;
+        const timeMatches = timeString.match(regex_time);
+
+        if(!timeMatches)
+        {
+            return false;
         }
-        let minute = new String(time.getMinutes());
-        if (minute.length < 2) {
-            minute = `0${minute}`;
+
+        const hour = parseInt(timeMatches[1]);
+        const minute = parseInt(timeMatches[2]);
+
+        if ((hour >= 0 && hour <= 23) && (minute >= 0 && minute <= 59)) {
+            return true;
         }
-        return new String(`${hour}:${minute}`);
+        return false;
+    }
+
+    function checkDate(){ 
+        depart.question(messageInputDate, date => {
+        // define date string to test 
+        //var ExpiryDate = document.getElementById(' ExpiryDate').value; 
+        // check date and print message 
+            if (isValidTime(date)) { 
+                console.log('OK'); 
+            } 
+            else { 
+                console.log('Invalid date format!'); 
+            } 
+        });
     }
 
     let welcomeMessage = "Welcome to the UQ Lakes station bus tracker!";
@@ -85,7 +105,7 @@ function main() {
 
     depart.question(messageInputDate, date => {
         depart.question(messageInputTime, time => {
-            if (isValidDate(date))
+            if (isValidDate(date) && isValidTime(time))
                 console.log(`You depart UQ Lakes station on ${date} at ${time}.`);
             else {
                 console.log('Invalid format!');
