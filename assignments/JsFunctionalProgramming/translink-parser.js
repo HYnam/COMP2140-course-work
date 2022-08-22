@@ -1,12 +1,11 @@
 // Import dependencies using ES Modules (requires "type": "module" in package.json)
-/**
+
 import promptSync from "prompt-sync";
 const prompt = promptSync({
     sigint: false
 });
 import fetch from "node-fetch";
 import fs from "fs/promises";
-*/
 
 function main() {
     // Declare global variable
@@ -69,24 +68,18 @@ function main() {
         const hour = parseInt(timeMatches[1]);
         const minute = parseInt(timeMatches[2]);
 
-        if ((hour >= 0 && hour <= 23) && (minute >= 0 && minute <= 59)) {
-            return true;
-        }
-        return false;
+        return hour >= 0 && hour <= 23 && minute >= 0 && minute <= 59
     }
 
-    function checkDate(){ 
-        depart.question(messageInputDate, date => {
-        // define date string to test 
-        //var ExpiryDate = document.getElementById(' ExpiryDate').value; 
-        // check date and print message 
-            if (isValidTime(date)) { 
-                console.log('OK'); 
-            } 
-            else { 
-                console.log('Invalid date format!'); 
-            } 
-        });
+    /**
+     * This function fetches data asynchronously based on the URL provided.
+     * @param {string} url - the URL to fetch data from (expecting JSON).
+     * @returns {string} the JSON response.
+     */
+    async function fetchData(url) {
+        const response = await fetch(url);
+        const responseJSON = await response.json();
+        return responseJSON;
     }
 
     let welcomeMessage = "Welcome to the UQ Lakes station bus tracker!";
