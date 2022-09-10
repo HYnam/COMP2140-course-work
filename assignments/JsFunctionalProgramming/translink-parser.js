@@ -1,11 +1,11 @@
 // Import dependencies using ES Modules (requires "type": "module" in package.json)
-
 import promptSync from "prompt-sync";
 const prompt = promptSync({
     sigint: false
 });
 import fetch from "node-fetch";
 import fs from "fs/promises";
+import * as readline from 'node:readline';
 
 function main() {
     // Declare global variable
@@ -90,16 +90,71 @@ function main() {
   
     console.log(welcomeMessage);
 
-    const readline = require('readline')
     const depart = readline.createInterface({
         input: process.stdin, 
         output: process.stdout
     });
+    let minute;
+    let TD_AT= new Array();
+    let RD_SD_THS= new Array();
+    let RD_RSHN_RLN= new Array();
+    let tripID;
+    let routeID;
 
     depart.question(messageInputDate, date => {
         depart.question(messageInputTime, time => {
-            if (isValidDate(date) && isValidTime(time))
-                console.log(`You depart UQ Lakes station on ${date} at ${time}.`);
+            if (isValidDate(date) && isValidTime(time)) {
+                const allFileContents = fs.readFileSync('./static-data/stop_times.txt', 'utf-8');
+               allFileContents.split(/\r?\n/).forEach(row =>  {
+                minute=row.split(",")[1].split(":")[1]-time.split(":")[1];
+                if(row.split(",")[1].split(":")[0]===time.split(":")[0] && (minute>=0 && minute<=10 ))
+                {
+                   // console.log("comming........" + row[0]+","+row[1]);
+
+                   TD_AT.push(row.split(",")[0]+","+row.split(",")[1]);
+                }
+               });
+
+               const fileContents = fs.readFileSync('./static-data/trips.txt', 'utf-8');
+               fileContents.split(/\r?\n/).forEach(row =>  {
+                tripID=row.split(",")[2];
+                
+                TD_AT.forEach(chunk=>{
+                    if (tripID===chunk.split(",")[0]) {
+                        RD_SD_THS.push(row.split(",")[0]+","+row.split(",")[1]+","+row.split(",")[3])
+                    }
+                })
+                
+               });
+
+               const myFileContents = fs.readFileSync('./static-data/routes.txt', 'utf-8');
+               myFileContents.split(/\r?\n/).forEach(row =>  {
+                routeID=row.split(",")[0];
+                
+                RD_SD_THS.forEach(chunk=>{
+                    if (routeID===chunk.split(",")[0]) {
+                        RD_RSHN_RLN.push(row.split(",")[0]+","+row.split(",")[1]+","+row.split(",")[2])
+                    }
+                })
+                
+               });
+               
+                for (let index = 0; index < TD_AT.length; index++) {
+
+               
+                    console.log("...........................Record #"+(index+1)+"...........................")
+                    console.log("Short name : "+ RD_RSHN_RLN[index].split(",")[1]);
+                    console.log("Long name : "+ RD_RSHN_RLN[index].split(",")[2]);
+                    console.log("Service ID : "+ RD_SD_THS[index].split(",")[1]);
+                    console.log("Trip Head sign : "+ RD_SD_THS[index].split(",")[2]);
+                    console.log("Vehicle Arrival Time : "+ TD_AT[index].split(",")[1]);
+                
+                
+                
+                
+                }
+                console.log("...........................End.........................................")
+            }
             else {
                 console.log('Invalid format!');
             }
