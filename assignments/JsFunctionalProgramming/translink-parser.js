@@ -158,7 +158,16 @@ function main() {
             else {
                 console.log('Invalid format!');
             }
-            depart.close();
+            depart.question(searchAgain, option => {
+                if (option.toLowerCase()==='y'|| option.toLowerCase()==="yes") {
+                    depart.close();
+                    main();
+                    
+                }
+                else{
+                    console.log(exitMessage);
+                }
+            });
         });
     });
 }
