@@ -7,3 +7,8 @@ exercises/week4/week3WorkingSol/node_modules
 *.ts
 *.map
 *.cjs
+assignments/JsFunctionalProgramming/cached-data/trip_updates.json
+assignments/JsFunctionalProgramming/static-data/stop_times.txt
+assignments/JsFunctionalProgramming/cached-data/vehicle_positions.json
+assignments/JsFunctionalProgramming/cached-data/trip_updates.json
+assignments/JsFunctionalProgramming/cached-data/alerts.json
