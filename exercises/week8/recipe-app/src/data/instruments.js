@@ -1,6 +1,12 @@
 import * as Tone from "tone";
 
 export const toneObject = Tone;
+export const toneTransport = toneObject.Transport;
+
+export const tonePart = new toneObject.Part((time, note) => {
+    guitar.triggerAttackRelease(note, "8n", time);
+}, []).start(0);
+
 export const synth = new toneObject.PolySynth().toDestination();
 
 export const guitar = new toneObject.Sampler({

@@ -6,7 +6,7 @@ import RecipeList from "./pages/RecipeList";
 import Recipe from "./pages/Recipe";
 import JustTheFacts from "./pages/JustTheFacts";
 import Music from "./pages/Music";
-import { toneObject } from "./data/instruments.js";
+import { toneObject, toneTransport, tonePart } from "./data/instruments.js";
 
 ReactDOM.render(
     <React.StrictMode>
@@ -16,7 +16,7 @@ ReactDOM.render(
                 <Route path="/recipe" element={<RecipeList />} />
                 <Route path="/recipe/:id" element={<Recipe />} />
                 <Route path="/just-the-facts" element={<JustTheFacts />} />
-                <Route path="/music" element={<Music toneObject={toneObject} />} />
+                <Route path="/music" element={<Music toneObject={toneObject} toneTransport={toneTransport} tonePart={tonePart} />} />
             </Routes>
         </BrowserRouter>
     </React.StrictMode>,
