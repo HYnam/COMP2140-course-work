@@ -14,7 +14,7 @@ function Template({ title, children }) {
     );
 }
 
-Template.PropTypes = {
+Template.propTypes = {
     title: PropTypes.string.isRequired,
 };
 
