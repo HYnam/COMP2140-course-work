@@ -9,6 +9,10 @@ const initialTodos = [
 function App() {
     
     const [todos, setTodos] = useState(initialTodos);
+
+    const addTodo = (todo) => {
+        setTodos([...todos, todo]);
+    };
     
     const toggleCompleted = (todo) => {
         let result = todos.filter((_todo) => _todo.task !== todo.task);
@@ -30,6 +34,7 @@ function App() {
             <header>
                 <h1>Todo App</h1>
             </header>
+            <TodoCreator addTodo={addTodo} /> 
             <hr />
             <main>
                 <h2>List of Todos</h2>
@@ -44,6 +49,35 @@ function App() {
         </>
     );
 
+}
+
+function TodoCreator({ addTodo }) {
+    const [todo, setTodo] = useState({ task: "", completed:false});
+
+    const handleChangeTask = (event) => {
+        setTodo({ ...todo, task: event.target.value});
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        addTodo(todo);
+    };
+    
+    return (
+        <form onSubmit={handleSubmit}>
+            <h2>Create New Todo</h2>
+            <label>
+                Task: 
+                <input 
+                type="text" 
+                name="task"
+                value={todo.task}
+                onChange={handleChangeTask}
+                />
+            </label>
+            <button type="submit">Create</button>
+        </form>
+    );
 }
 
 function Todo({ task, completed, toggleCompleted }) {
