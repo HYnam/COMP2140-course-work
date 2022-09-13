@@ -14,6 +14,10 @@ function App() {
         setTodos([...todos, todo]);
     };
     
+    const deleteTodo = (todo) => {
+        setTodos(todos.filter((_todo) => _todo.task !== todo.task));
+    };
+
     const toggleCompleted = (todo) => {
         let result = todos.filter((_todo) => _todo.task !== todo.task);
         setTodos([...result, { ...todo, completed: !todo.completed }]);
@@ -43,6 +47,7 @@ function App() {
                     key={todo.task}
                     {...todo}
                     toggleCompleted={() => toggleCompleted(todo)}
+                    deleteTodo={() => deleteTodo(todo)}
                     />
                 ))}
             </main>
@@ -80,7 +85,7 @@ function TodoCreator({ addTodo }) {
     );
 }
 
-function Todo({ task, completed, toggleCompleted }) {
+function Todo({ task, completed, toggleCompleted, deleteTodo }) {
     
     const taskStyle = () => {
         let result = { display: "inline-block" };
@@ -96,6 +101,7 @@ function Todo({ task, completed, toggleCompleted }) {
             <p style={taskStyle()}>
                 {task}
             </p>
+            <button onClick={deleteTodo}>Delete</button>
         </section>
     );
 
