@@ -1,6 +1,6 @@
 import Template from "../components/Template";
 import { synth, guitar, toneObject } from "../data/instruments.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Bar({ barID, barEnable, handleBarClick }) {
     function barSelected() {
@@ -37,6 +37,23 @@ function Bars({ sequence, setSequence, toneObject }) {
     return sequence.sort(sortSequence).map(bar => <Bar key={bar.barID} {...bar} handleBarClick={() => handleBarClick(bar)} />);
 }
 
+function Preview({ previewing, setPreviewing, toneObject, toneTransport }) {
+    function handleButtonClick() {
+        toneObject.start();
+        toneTransport.stop();
+
+        if (previewing) {
+            setPreviewing(false);
+            console.log("Preview stopped manually");
+        } else {
+            setPreviewing(true);
+            console.log("Preview started.");
+            toneTransport.start();
+        }
+    }
+    return <button onClick={handleButtonClick}>{previewing ? "Stop Previewing" : "Preview"}</button>;
+}
+
 function Sequencer({ toneObject, toneTransport, tonePart }) {
     const initialSequence = [];
 
@@ -49,12 +66,33 @@ function Sequencer({ toneObject, toneTransport, tonePart }) {
     }
 
     const [sequence, setSequence] = useState(initialSequence);
+    const initialPreviewing = false;
+    const [previewing, setPreviewing] = useState(initialPreviewing);
+
+    useEffect(() => {
+        tonePart.clear();
+        toneTransport.cancel();
+
+        sequence.filter(bar => bar.barEnable).forEach(bar => {
+            tonePart.add((bar.barID - 1) / 4, "C3"); //Plays an C note on 3rd octave 0.25s apart
+        });
+
+        toneTransport.schedule(time => {
+            setPreviewing(false);
+            console.log("Preview stopped automatically.");
+        }, 16 / 4);
+    });
 
     return (
         <>
             <div className="sequencer">
                 <Bars sequence={sequence} setSequence={setSequence} toneObject={toneObject} />
             </div>
+
+            <h4>Play Multiple Bars From Sequence</h4>
+            <p>
+                <Preview previewing={previewing} setPreviewing={setPreviewing} />
+            </p>
         </>
     );
 }
