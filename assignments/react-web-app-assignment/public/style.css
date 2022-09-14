@@ -1,0 +1,18 @@
+:root {
+	--purpleColorLighter: #A42DE8;
+	--blueColorLighter: #318AFF;
+	--blueColorDarker: #2D3DE8;
+	--bgColor: #ffffff;
+	--fgColor: #800080;
+	--fgColorLighter: rgba(128,0,128,0.5);
+	--headerTextColor: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--bgColor: #422142;
+		--fgColor: #f0c4f0;
+		--fgColorLighter: rgba(210,169,210,0.5);
+		--headerTextColor: var(--fgColor);
+	}
+}
