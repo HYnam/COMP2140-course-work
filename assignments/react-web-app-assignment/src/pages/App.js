@@ -4,7 +4,7 @@ import Template from '../components/Template';
 export default function App() {
   return (
     <Template title="Welcome to Share Music App!">
-        <p>More are coming</p>
+        <p>Create your own <Link to={`/music`}>music sharing list</Link>.</p>
     </Template>
-  )
+  );
 }

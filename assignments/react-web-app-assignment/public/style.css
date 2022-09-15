@@ -16,3 +16,41 @@
 		--headerTextColor: var(--fgColor);
 	}
 }
+
+.page-header, main {
+	padding: 0.2em 0.2em;
+}
+
+/* Page Header */
+.page-header {
+	background-color: var(--purpleColorLighter);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.main-menu ul {
+	display: flex;
+}
+
+.main-menu li {
+	list-style: none;
+	margin-left: 1em;
+}
+
+.page-header h1 {
+	color: var(--headerTextColor);
+}
+
+/* Page footer */
+.page-footer {
+	background-color: var(--purpleColorLighter);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: var(--headerTextColor);
+}
+
+.title {
+	color: var(--headerTextColor);
+}
