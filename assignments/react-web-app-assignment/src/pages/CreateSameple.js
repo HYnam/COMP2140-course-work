@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Template from "../components/Template";
 
-export default function MusicList() {
+export default function CreateSample() {
     return (
-        <Template title="Samples You've Created">
+        <Template title = "Editing This Sample">
             
         </Template>
     )
