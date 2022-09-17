@@ -11,9 +11,8 @@ export default function Header() {
 
     return (
         <header className="page-header">
-            <Link to="/">
-                <h1>Music Sharing</h1>
-            </Link>
+            <h1>OgCiSum</h1>
+            <p>Create and Share Samples, Listen in Mobile App!</p>
             <nav className="main-menu">
                 <ul>
                     {navLinks.map((link) => {
