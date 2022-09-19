@@ -4,7 +4,9 @@ import { useState, useEffect } from "react";
 
 function SampleCard({ sample }) {
   return (
+    <div class="Sample-read">
       <h4>{sample}</h4>
+    </div>
   );
 }
 
@@ -28,10 +30,12 @@ export default function App() {
     <Template title="Samples You've Created">
       <SampleCard sample={sample} />
 
-      <Link to="/create-sample">
-        <button>Create Sample</button>
-      </Link>
-      
+      <div class="createSample">
+        <Link to="/create-sample">
+          <button>Create Sample</button>
+        </Link>
+      </div>
+
     </Template>
   );
 }
