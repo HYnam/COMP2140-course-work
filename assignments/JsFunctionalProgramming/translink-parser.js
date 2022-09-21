@@ -4,7 +4,7 @@ const prompt = promptSync({
     sigint: false
 });
 import fetch from "node-fetch";
-import fs from "fs/promises";
+import fs from "fs";
 import * as readline from 'node:readline';
 
 function main() {
