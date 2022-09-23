@@ -1,0 +1,70 @@
+body {
+	background-color: #aaa;
+}
+
+.page-header, main {
+	padding: 1em 2em;
+}
+
+/* Page Header */
+
+.page-header {
+	background-color: yellowgreen;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.main-menu ul {
+	display: flex;
+}
+
+.main-menu li {
+	list-style: none;
+	margin-left: 2em;
+}
+
+/* Main Content */
+
+main {
+	background-color: white;
+}
+
+.author {
+	color: yellowgreen;
+	font-weight: bold;
+}
+
+.method {
+	display: flex;
+}
+
+.method > article {
+	margin-right: 4em;
+}
+
+/* Music */
+
+.sequencer {
+	border: 2px solid black;
+	display: flex;
+	overflow: auto;
+}
+
+.sequencer > .bar {
+	border: 1px solid black;
+	width: 100%;
+	padding: 0.75em 0.25em;
+	text-align: center;
+	cursor: pointer;
+}
+
+.sequencer > .bar:hover {
+	background: #aaa;
+}
+
+.sequencer > .bar.selected {
+	background: #666;
+	color: white;
+	font-weight: bold;
+}
