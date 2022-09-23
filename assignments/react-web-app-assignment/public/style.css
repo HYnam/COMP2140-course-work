@@ -52,6 +52,17 @@
 	.createSample button {
 		background-color: rgba(128,0,128,0.5);
 		color: var(--bgColor);
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+
+	.card-detail {
+		background-color: var(--bgColor);
+		border: 2.5px outset var(--purpleColorLighter);
+	}
+	input {
+		background-color: var(--purpleColorLighter);
+		width: 70%;
 	}
 
 	/* Page footer */

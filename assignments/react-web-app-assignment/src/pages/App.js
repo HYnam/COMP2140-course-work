@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 function SampleCard({ sample }) {
   return (
-    <div class="Sample-read">
+    <div className="Sample-read">
       <h4>{sample}</h4>
     </div>
   );
