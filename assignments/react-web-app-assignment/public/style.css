@@ -72,6 +72,59 @@
 		color: var(--bgColor);
 	}
 
+	#instrument-select {
+		width: 100%;
+	}
+	.types {
+		display: inline-block;
+		width: 10%;
+	}
+	.instrument-button {
+		display: inline-block;
+		width: 20%;
+		position: relative;
+		padding: 0;
+		text-align: center;
+		border: 2.5px outset var(--purpleColorLighter);
+		border-width: 4px;
+		background-color: white;
+	}
+
+	/* Music Sequencer */
+	.sequencer {
+		border: 2px solid var(--fgColor);
+		display: flex;
+		overflow: auto;
+	}
+	.sequencer > .bar {
+		border: 1px solid var(--fgColor);
+		width: 100%;
+		padding: 0.75em 0.25em;
+		text-align: center;
+		cursor: pointer;
+	}
+	.sequencer > .bar:hover {
+		background-color: var(--fgColorLighter);
+	}
+	.sequencer > .bar.selected {
+		background-color: var(--fgColor);
+		color: white;
+		font-weight: bold;
+	}
+	#NoteB {
+		width: 100%;
+	}
+	.text {
+		display: inline-block;
+		width: 10%;
+	}
+	.NoteChoice {
+		display: inline-block;
+		width: 90%;
+	}
+
+
+
 	/* Page footer */
 	.page-footer {
 		background-color: var(--purpleColorLighter);
