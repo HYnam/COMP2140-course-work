@@ -60,9 +60,16 @@
 		background-color: var(--bgColor);
 		border: 2.5px outset var(--purpleColorLighter);
 	}
-	input {
+	input { /* Music name input placeholder */
 		background-color: var(--purpleColorLighter);
 		width: 70%;
+		margin-left: 10px;
+		color: var(--fgColor);
+		font-family: "Dynapuff";
+	}
+	.card-detail button {
+		background-color: rgba(128,0,128,0.5);
+		color: var(--bgColor);
 	}
 
 	/* Page footer */
