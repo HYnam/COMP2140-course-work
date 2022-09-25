@@ -3,20 +3,21 @@ import * as Tone from "tone";
 export const toneObject = Tone;
 export const toneTransport = toneObject.Transport;
 
-export const tonePartGuitar = new toneObject.Part((time, note) => {
-    guitar.triggerAttackRelease(note, "8n", time);
-}, []).start(0);
-
-export const tonePartPiano = new toneObject.Part((time, note) => {
-    piano.triggerAttackRelease(note, "8n", time);
-}, []).start(0);
-
-export const tonePartFrenchHorn = new toneObject.Part((time, note) => {
-    frenchHorn.triggerAttackRelease(note, "8n", time);
-}, []).start(0);
-
-export const tonePartDrum = new toneObject.Part((time, note) => {
-    drum.triggerAttackRelease(note, "8n", time);
+export const tonePart = new toneObject.Part((time, sound) => {
+    switch (sound.instrument) {
+        case "piano":
+            piano.triggerAttackRelease(sound.note, "8n", time);
+            break;
+        case "french horn":
+            frenchHorn.triggerAttackRelease(sound.note, "8n", time);
+            break;
+        case "guitar":
+            guitar.triggerAttackRelease(sound.note, "8n", time);
+            break;
+        case "drums":
+            drums.triggerAttackRelease(sound.note, "8n", time);
+            break;
+    }
 }, []).start(0);
 
 export const synth = new toneObject.PolySynth().toDestination();
@@ -154,7 +155,7 @@ export const guitar = new toneObject.Sampler({
     baseUrl: "samples/guitar-acoustic/"
 }).toDestination();
 
-export const drum = new toneObject.Sampler({
+export const drums = new toneObject.Sampler({
     urls: {
         "B3": "drums1.mp3",
         "A3": "drums2.mp3",
