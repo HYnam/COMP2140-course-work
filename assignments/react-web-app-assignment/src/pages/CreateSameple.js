@@ -8,15 +8,13 @@ import { guitar, piano, drums, frenchHorn } from "../data/instruments.js";
 function Bar ({ barID, barEnabled, handleBarClick }) {
     function barSelected() {
         if (barEnabled) {
-            return "selected";
+            return true;
         }
-        return "";
+        return false;
     }
 
     return (
-        <div className={`bar bar-${barID} ${barSelected()}`} onClick={handleBarClick}>
-            {barID}
-        </div>
+        <div className={`bar bar-${barID} ${barSelected()}`} onClick={handleBarClick}></div>
     );
 }
 
@@ -56,15 +54,25 @@ function Preview ({ preview, setPreview, toneObject, toneTransport }) {
     return <button onClick={handlePreviewClick}>{preview ? "Stop Previewing" : "Preview"}</button>;
 }
 
-function Sequencer ({ toneObject, toneTransport, tonePart }) {
+function NoteList() {
+    const notes = ['B', 'A', 'G', 'F', 'E', 'D', 'C'];    
+
+    return(
+        notes.map((note) => (
+            <p key={note}>{note}</p>
+        ))
+    );
+}
+
+function Sequencer ({ toneObject, toneTransport, tonePart, notes }) {
     const initialSequence = [];
-    for (let bar = 1; bar <= 16; bar ++) {
+    for (let bar = 1; bar <= 16; bar++) {
         initialSequence.push({
             barID: bar, 
             barEnabled: false,
         });
-    }
-
+    }   
+    
     const [sequence, setSequence] = useState(initialSequence);
     const initialPreviewing = false;
     const [preview, setPreview] = useState(initialPreviewing);
@@ -116,37 +124,7 @@ export default function CreateSample({ toneObject, toneTransport, tonePart }) {
             
 
             <div className="NoteB">
-                <div className="text"><p>B</p></div>
-                <div className="NoteChoice"><Sequencer toneObject={toneObject} toneTransport={toneTransport} tonePart={tonePart} /></div>
-            </div>
-
-            <div className="NoteA">
-                <div className="text"><p>A</p></div>
-                <div className="NoteChoice"><Sequencer toneObject={toneObject} toneTransport={toneTransport} tonePart={tonePart} /></div>
-            </div>
-
-            <div className="NoteG">
-                <div className="text"><p>G</p></div>
-                <div className="NoteChoice"><Sequencer toneObject={toneObject} toneTransport={toneTransport} tonePart={tonePart} /></div>
-            </div>
-            
-            <div className="NoteF">
-                <div className="text"><p>F</p></div>
-                <div className="NoteChoice"><Sequencer toneObject={toneObject} toneTransport={toneTransport} tonePart={tonePart} /></div>
-            </div>
-
-            <div className="NoteE">
-                <div className="text"><p>E</p></div>
-                <div className="NoteChoice"><Sequencer toneObject={toneObject} toneTransport={toneTransport} tonePart={tonePart} /></div>
-            </div>
-
-            <div className="NoteD">
-                <div className="text"><p>D</p></div>
-                <div className="NoteChoice"><Sequencer toneObject={toneObject} toneTransport={toneTransport} tonePart={tonePart} /></div>
-            </div>
-
-            <div className="NoteC">
-                <div className="text"><p>C</p></div>
+                <div className="text"><NoteList /></div>
                 <div className="NoteChoice"><Sequencer toneObject={toneObject} toneTransport={toneTransport} tonePart={tonePart} /></div>
             </div>
 
