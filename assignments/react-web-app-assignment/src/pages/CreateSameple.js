@@ -54,17 +54,7 @@ function Preview ({ preview, setPreview, toneObject, toneTransport }) {
     return <button onClick={handlePreviewClick}>{preview ? "Stop Previewing" : "Preview"}</button>;
 }
 
-function NoteList() {
-    const notes = ['B', 'A', 'G', 'F', 'E', 'D', 'C'];    
-
-    return(
-        notes.map((note) => (
-            <p key={note}>{note}</p>
-        ))
-    );
-}
-
-function Sequencer ({ toneObject, toneTransport, tonePart, notes }) {
+function Sequencer ({ toneObject, toneTransport, tonePart }) {
     const initialSequence = [];
     for (let bar = 1; bar <= 16; bar++) {
         initialSequence.push({
@@ -72,6 +62,17 @@ function Sequencer ({ toneObject, toneTransport, tonePart, notes }) {
             barEnabled: false,
         });
     }   
+
+    function NoteList() {
+        const notes = ['B', 'A', 'G', 'F', 'E', 'D', 'C'];
+    
+        return(
+            notes.map((note) => (
+                <p key={note}>{note}</p>
+            ))
+
+        )
+    }
     
     const [sequence, setSequence] = useState(initialSequence);
     const initialPreviewing = false;
@@ -93,6 +94,7 @@ function Sequencer ({ toneObject, toneTransport, tonePart, notes }) {
 
     return (
         <>
+            <div className="text"><NoteList /></div>
             <div className="sequencer">
                 <Bars sequence={sequence} setSequence={setSequence} toneObject={toneObject} />
             </div>
@@ -124,7 +126,6 @@ export default function CreateSample({ toneObject, toneTransport, tonePart }) {
             
 
             <div className="NoteB">
-                <div className="text"><NoteList /></div>
                 <div className="NoteChoice"><Sequencer toneObject={toneObject} toneTransport={toneTransport} tonePart={tonePart} /></div>
             </div>
 
