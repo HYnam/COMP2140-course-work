@@ -21,3 +21,19 @@ import smileWhite from "../App Logos Icons/icon-smiley-white.png";
 // Profile Page image
 import cat from "../App Logos Icons/cat.jpg";
 
+export default {
+    logo,
+    logoDark, 
+    logoWhite,
+    mapDark,
+    mapWhite,
+    profileDark,
+    profileWhite,
+    pinDark, 
+    pinLight,
+    pinWhite,
+    smileDark,
+    smileLight,
+    smileWhite,
+    cat,
+}
