@@ -9,7 +9,9 @@ import {
     Image,
     Dimensions,
     Text,
-    Button
+    Button,
+    StyleSheet,
+    TextInput
 } from "react-native";
 
 import {
@@ -22,7 +24,7 @@ const {
     height
 } = Dimensions.get("window");
 
-const styles = {
+const styles = StyleSheet.create({
     container: {
         padding: 20
     },
@@ -44,13 +46,21 @@ const styles = {
     buttonView: {
         flexDirection: "row",
         justifyContent: "space-around"
-    }
-};
+    },
+    input: {
+        height: 40,
+        margin: 12,
+        borderWidth: 1,
+        padding: 10,
+    },
+});
 
 export default function Profile() {
 
     const [ photoState, setPhotoState ] = useState({});
     console.log(photoState);
+
+    const [text, onChangeText] = React.useState("Enter Your Name")
     
     async function handleChangePress() {
         const result = await launchImageLibrary();
@@ -105,6 +115,11 @@ export default function Profile() {
                         />
                     }
                 </View>
+                <TextInput
+                    style={styles.input}
+                    onChange={onChangeText}
+                    value={text}
+                />
             </View>
         </SafeAreaView>
     );
