@@ -32,6 +32,11 @@ const styles = StyleSheet.create({
         padding: 20
     },
     photoFullView: {
+        borderWidth: 3,
+        borderRadius: 10,
+        borderColor: colors.dark.fgColor,
+        borderStyle: "solid",
+        height: height / 2,
         marginBottom: 20
     },
     photoEmptyView: {
@@ -54,6 +59,10 @@ const styles = StyleSheet.create({
         height: 400,
     },
     buttonViewAdded: {
+        position: "relative",
+        alignItems: "center",
+        justifyContent: "center", 
+        flexDirection: "row",
     },
     input: {
         height: 40,
