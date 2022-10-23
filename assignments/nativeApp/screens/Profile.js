@@ -11,12 +11,15 @@ import {
     Text,
     Button,
     StyleSheet,
-    TextInput
+    TextInput,
+    PermissionsAndroid,
 } from "react-native";
 
 import {
-    launchImageLibrary
+    launchImageLibrary,
+    ImagePicker
 } from "react-native-image-picker";
+
 import { colors } from "../data/theme";
 
 const {
@@ -45,14 +48,31 @@ const styles = StyleSheet.create({
     },
     buttonView: {
         flexDirection: "row",
-        justifyContent: "space-around"
+        justifyContent: "center",
+        alignItems: "center",
+        position: "relative",
+        height: 400,
+    },
+    buttonViewAdded: {
     },
     input: {
         height: 40,
         margin: 12,
         borderWidth: 1,
         padding: 10,
+        color: colors.dark.bgColor,
+        backgroundColor: colors.dark,
+        textAlign: "center"
     },
+    textHeader: {
+        fontSize: 30,
+        fontWeight: "bold",
+        color: colors.purpleColorLighter
+    },
+    textPar: {
+        fontSize: 20, 
+        color: colors.purpleColorLighter
+    }
 });
 
 export default function Profile() {
@@ -64,7 +84,6 @@ export default function Profile() {
     
     async function handleChangePress() {
         const result = await launchImageLibrary();
-        //console.log(result);
         if(typeof result.assets[0] == "object") {
             setPhotoState(result.assets[0]);
         }
@@ -89,32 +108,41 @@ export default function Profile() {
                             height: height / 2
                         }}
                     />
+
+                    <View style={styles.buttonViewAdded}>
+                        <Button
+                            onPress={handleChangePress}
+                            title={hasPhoto ? "Change Photo" : "Add Photo"}
+                        />
+                    </View>
                 </View>
             );
         }
         else {
             return (
-                <View style={styles.photoEmptyView} />
+                <View style={styles.photoEmptyView}> 
+                    <View style={styles.buttonView}>
+                        <Button
+                            onPress={handleChangePress}
+                            title={hasPhoto ? "Change Photo" : "Add Photo"}
+                        />
+                    </View>
+                </View>
             );        
         }
     }
     
     return (
         <SafeAreaView>
+            <Text style={styles.textHeader}>
+                Edit Profile
+            </Text>
+            <Text style={styles.textPar}>
+                Mirror, Mirror On The Wall...
+            </Text>
+
             <View style={styles.container}>
                 <Photo />
-                <View style={styles.buttonView}>
-                    <Button
-                        onPress={handleChangePress}
-                        title={hasPhoto ? "Change Photo" : "Add Photo"}
-                    />
-                    {hasPhoto &&
-                        <Button
-                            onPress={handleRemovePress}
-                            title="Remove Photo"
-                        />
-                    }
-                </View>
                 <TextInput
                     style={styles.input}
                     onChange={onChangeText}
