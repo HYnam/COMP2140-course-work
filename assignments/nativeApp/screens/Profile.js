@@ -12,12 +12,10 @@ import {
     Button,
     StyleSheet,
     TextInput,
-    PermissionsAndroid,
 } from "react-native";
 
 import {
     launchImageLibrary,
-    ImagePicker
 } from "react-native-image-picker";
 
 import { colors } from "../data/theme";
@@ -69,8 +67,8 @@ const styles = StyleSheet.create({
         margin: 12,
         borderWidth: 1,
         padding: 10,
-        color: colors.dark.bgColor,
-        backgroundColor: colors.dark,
+        placeholderTextColor: colors.dark.bgColor,
+        backgroundColor: colors.dark.fgColor,
         textAlign: "center"
     },
     textHeader: {
