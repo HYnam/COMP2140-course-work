@@ -10,7 +10,7 @@ import Geolocation from "@react-native-community/geolocation";
 import { getDistance } from "geolib";
 
 // Import Locations Data
-import { locations } from "../data/location";
+import { locations, fetchLocations } from "../data/location";
 
 // Define Stylesheet
 const styles = StyleSheet.create({
@@ -35,7 +35,13 @@ function NearbyLocation(props) {
     if(typeof props.location != "undefined") {
         return (
             <SafeAreaView style={styles.nearbyLocationSafeAreaView}>
-                <View style={styles.nearbyLocationView}>
+                <View style={styles.nearbyLocationView} />   
+            </SafeAreaView>
+        );
+    }
+}
+                    // Show location within 100 meters 
+                    /** 
                     <Text style={styles.nearbyLocationText}>
                         {props.location}
                     </Text>
@@ -47,11 +53,7 @@ function NearbyLocation(props) {
                             Within 100 Metres!
                         </Text>
                     }
-                </View>
-            </SafeAreaView>
-        );
-    }
-}
+                    */
 
 // Main component for displaying the map and markers
 export default function ShowMap() {
