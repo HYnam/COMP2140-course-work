@@ -4,7 +4,6 @@ import React, {
 
 import {
     SafeAreaView,
-    ScrollView,
     View,
     Image,
     Dimensions,
@@ -12,6 +11,9 @@ import {
     Button,
     StyleSheet,
     TextInput,
+    Keyboard,
+    KeyboardAvoidingView,
+    Platform, 
 } from "react-native";
 
 import {
@@ -67,7 +69,6 @@ const styles = StyleSheet.create({
         margin: 12,
         borderWidth: 1,
         padding: 10,
-        placeholderTextColor: colors.dark.bgColor,
         backgroundColor: colors.dark.fgColor,
         textAlign: "center"
     },
@@ -86,8 +87,6 @@ export default function Profile() {
 
     const [ photoState, setPhotoState ] = useState({});
     console.log(photoState);
-
-    const [text, onChangeText] = React.useState("Enter Your Name")
     
     async function handleChangePress() {
         const result = await launchImageLibrary();
@@ -140,6 +139,8 @@ export default function Profile() {
     }
     
     return (
+    <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
         <SafeAreaView>
             <Text style={styles.textHeader}>
                 Edit Profile
@@ -150,13 +151,16 @@ export default function Profile() {
 
             <View style={styles.container}>
                 <Photo />
+            
                 <TextInput
                     style={styles.input}
-                    onChange={onChangeText}
-                    value={text}
+                    placeholder="Enter Your Name"
+                    placeholderTextColor="#800080"
+                    onSubmitEditing={Keyboard.dismiss}
                 />
             </View>
         </SafeAreaView>
+    </KeyboardAvoidingView>
     );
 
 }
