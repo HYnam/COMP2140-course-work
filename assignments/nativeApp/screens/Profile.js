@@ -64,7 +64,8 @@ const styles = StyleSheet.create({
         justifyContent: "center", 
         position: "absolute",
         height: 700, 
-        right: 110
+        right: 110,
+        color: colors.purpleColorLighter
     },
     input: {
         height: 40,
