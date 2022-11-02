@@ -59,10 +59,12 @@ const styles = StyleSheet.create({
         height: 400,
     },
     buttonViewAdded: {
-        position: "relative",
+        flexDirection: "row",
         alignItems: "center",
         justifyContent: "center", 
-        flexDirection: "row",
+        position: "absolute",
+        height: 700, 
+        right: 110
     },
     input: {
         height: 40,
