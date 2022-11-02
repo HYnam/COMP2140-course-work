@@ -57,6 +57,21 @@ function NearbyLocation(props) {
 
 // Main component for displaying the map and markers
 export default function ShowMap() {
+    // Declare variable to fetch location from api 
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    // fetch location from api 
+    const fetchLocation = async () => {
+        const response = await fetch("http://wmp.interaction.courses/api/v1/?apiKey=2izT6jiZ&mode=read&endpoint=locations");
+        const data = await response.json(); 
+        setData(data);
+        setLoading(false);
+    };
+
+    useEffect(() => {
+        fetchLocation();
+    }, []);
 
     // Convert string-based latlong to object-based on each location
     const updatedLocations = locations.map(location => {
@@ -73,9 +88,9 @@ export default function ShowMap() {
         locationPermission: false,
         locations: updatedLocations,
         userLocation: {
-            latitude: -27.499526188402154,
-            longitude: 152.9728129460468,
-            // Starts at "Indooroopilly Shopping Centre"
+            latitude: -27.4958277442,
+            longitude: 153.015701236,
+            // Starts at "UQ Sport Fitness Center"
         },
         nearbyLocation: {}
     };
