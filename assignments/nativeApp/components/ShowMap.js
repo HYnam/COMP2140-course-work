@@ -10,7 +10,7 @@ import Geolocation from "@react-native-community/geolocation";
 import { getDistance } from "geolib";
 
 // Import Locations Data
-import { locations, fetchLocations } from "../data/location";
+import { locations } from "../App";
 
 // Define Stylesheet
 const styles = StyleSheet.create({
@@ -57,22 +57,6 @@ function NearbyLocation(props) {
 
 // Main component for displaying the map and markers
 export default function ShowMap() {
-    // Declare variable to fetch location from api 
-    const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(true);
-
-    // fetch location from api 
-    const fetchLocation = async () => {
-        const response = await fetch("http://wmp.interaction.courses/api/v1/?apiKey=2izT6jiZ&mode=read&endpoint=locations");
-        const data = await response.json(); 
-        setData(data);
-        setLoading(false);
-    };
-
-    useEffect(() => {
-        fetchLocation();
-    }, []);
-
     // Convert string-based latlong to object-based on each location
     const updatedLocations = locations.map(location => {
         const latlong = location.latlong.split(", ");
@@ -203,5 +187,4 @@ export default function ShowMap() {
             />
         </>
     );
-    
 }
