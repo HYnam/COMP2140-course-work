@@ -39,17 +39,5 @@ export const sizes = {
     body5: 12,
 };
 
-// Fonts
-
-export const fonts = {
-    headingLight: { paddingBottom: sizes.padding / 2, color: colors.light.headerTextColor, fontFamily: "System", fontSize: sizes.heading, lineHeight: 30 },
-    headingDark: { paddingBottom: sizes.padding / 2, color: colors.dark.headerTextColor, fontFamily: "System", fontSize: sizes.heading, lineHeight: 30 },
-    body1: { color: colors.black, fontFamily: "System", fontSize: sizes.body1, lineHeight: 36 },
-    body2: { color: colors.black, fontFamily: "System", fontSize: sizes.body2, lineHeight: 30 },
-    body3: { color: colors.black, fontFamily: "System", fontSize: sizes.body3, lineHeight: 22 },
-    body4: { color: colors.black, fontFamily: "System", fontSize: sizes.body4, lineHeight: 22 },
-    body5: { color: colors.black, fontFamily: "System", fontSize: sizes.body5, lineHeight: 22 },
-};
-
-const appTheme = { colors, sizes, fonts };
+const appTheme = { colors, sizes };
 export default appTheme;

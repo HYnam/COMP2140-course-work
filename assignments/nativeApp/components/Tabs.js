@@ -7,6 +7,7 @@ import LinearGradient from "react-native-linear-gradient";
 import ShowMap from "../components/ShowMap";
 import PlayMusic from "../screens/MusicPlay";
 import Profile from "../screens/Profile";
+import App from "../App";
 
 import icons from "../data/icons";
 import { colors, sizes } from "../data/theme";
@@ -25,8 +26,8 @@ function TabIcon({ focused, icon }) {
                 source={icon}
                 resizeMode="contain"
                 style={{
-                    width: 30,
-                    height: 30,
+                    width: 40,
+                    height: 60,
                     tintColor: focused ? colors.light.bgColor : colors.purpleColorLighter
                 }}
             />
@@ -49,15 +50,16 @@ function tabOptions(icon) {
         },
         tabBarLabelStyle: {
             padding: sizes.padding / 2
-        }
+        },
     };
 }
 
-function Tabs({ navigation }) {
+export default function Tabs({ navigation, prop }) {
 
     return (
         <NavigationContainer>
             <Tab.Navigator>
+
                 <Tab.Screen
                     name="Map"
                     children={() => <ShowMap navigation={navigation} />}
@@ -80,5 +82,3 @@ function Tabs({ navigation }) {
     );
 
 }
-
-export default Tabs;
