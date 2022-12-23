@@ -108,8 +108,6 @@
 	}
 	.sequencer > .bar.selected {
 		background-color: var(--fgColor);
-		color: white;
-		font-weight: bold;
 	}
 	#NoteB {
 		width: 100%;
