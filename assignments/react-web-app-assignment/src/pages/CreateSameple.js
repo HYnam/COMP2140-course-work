@@ -5,6 +5,10 @@ import { Link, useParams } from "react-router-dom";
 import Template from "../components/Template";
 import { guitar, piano, drums, frenchHorn } from "../data/instruments.js";
 
+const types = ['piano','french_horn','guitar','drums'];
+const [sample_type, setType] = useState("Piano");
+const [sample_name, setName] = useState("");
+
 function Bar ({ barID, barEnabled, handleBarClick }) {
     function barSelected() {
         if (barEnabled) {
@@ -103,7 +107,7 @@ function Sequencer ({ toneObject, toneTransport, tonePart }) {
 }
 
 export default function CreateSample({ toneObject, toneTransport, tonePart }) {
-    let sampleName = <input type="text" name="samepleName" placeholder="Enter your music name" />
+    let sampleName = <input type="text" name="samepleName" placeholder="Enter your music name" />    
 
     return (
         <Template title = "Editing This Sample:">
@@ -117,11 +121,15 @@ export default function CreateSample({ toneObject, toneTransport, tonePart }) {
             </div>
 
             <div className="instrument-select">
-                <div className="types"><p>Type</p></div>
-                <div className="instrument-button"><button>Piano</button></div>
-                <div className="instrument-button"><button>French Horn</button></div>
-                <div className="instrument-button"><button>Guitar</button></div>
-                <div className="instrument-button"><button>Drums</button></div>
+                {types.map((type) => (
+                    <button
+                        id="column2"
+                        type="button"
+                        onClick={(e) => setType(type)}
+
+                        className={(sample_type === type ? "check-on" : "checked-off")}
+                        ><h5>{type}</h5></button>
+                ))}
             </div>    
             
 
